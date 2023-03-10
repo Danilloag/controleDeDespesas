@@ -19,6 +19,7 @@
         </header>
 
         <main>
+
             <div class="container-cards">
                 <div class="card">
                     <h3>TOTAL PAGO</h3>
@@ -37,8 +38,36 @@
                     <h3 id="atrasadas">5</h3>
                     <div class="linha-colorida-amarelo"></div>
                 </div>
-
             </div>
+
+            <div class="container-despesas">
+
+                <div class="container-input-despesas">
+                    <label for="filtrar">Filtrar</label>
+                    <input type="text" id="input-filtrar" placeholder="TESTE">
+                    <input type="submit" value="Filtrar" id="botao-filtrar" class="botao-grande botao-primario">
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data de vencimento</th>
+                            <th>Despesa</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>23/03/2023</td>
+                            <td>Compra de lanche</td>
+                            <td>R% 50,00</td>
+                            <td>PAGO</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </main>
 
     </div>

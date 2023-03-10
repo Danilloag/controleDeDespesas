@@ -30,6 +30,21 @@ main {
     padding: 160px;
 }
 
+/* CONFIGURANDO OS BOTÕES */
+
+.botao:hover {}
+
+.botao-grande {
+    height: 42px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    padding: 8px 22px;
+}
+
+.botao-primario {
+    background-color: var(--cor-primaria);
+}
+
 /* TRABALHANDO COM OS CARDS */
 
 .container-cards {
@@ -83,10 +98,55 @@ main {
     color: var(--cor-atencao);
 }
 
-.card-pago, .card-divida, .card-atrasadas {
+.card-pago,
+.card-divida,
+.card-atrasadas {
     font-size: 18px;
 }
 
-#total-pago, #total-divida, #atrasadas {
+#total-pago,
+#total-divida,
+#atrasadas {
     font-size: 32px;
+}
+
+/* TRABALHANDO COM A TELA DE LISTAGEM DAS DESPESAS */
+
+.container-despesas {
+    margin: 100px 80px;
+    width: 100%;
+    display: grid;
+    gap: 32px;
+}
+
+.container-input-despesas {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    width: 50%;
+}
+
+label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+}
+
+#input-filtrar {
+    padding-top: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    width: 80%;
+}
+
+/* FORMATANDO AS TABELAS */
+
+thead {
+    height: 56px;
+    background-color:#F3F6F9;
+    align-items: left;
+}
+
+table {
+    text-align: left;
 }
