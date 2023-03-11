@@ -14,59 +14,157 @@
 
         <header>
             <span class="link-header">Despesas</span>
-            <div id="separador-header"></div>
+            <div id="separador"></div>
             <span class="link-header">Categorias</span>
         </header>
 
         <main>
 
-            <div class="container-cards">
+            <section id="home" hidden>
+                <div class="container-cards">
+                    <div class="card">
+                        <h3>TOTAL PAGO</h3>
+                        <h3 id="total-pago">R$ 100,00</h3>
+                        <div class="linha-colorida-verde"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3>TOTAL A PAGAR</h3>
+                        <h3 id="total-divida">R$ 200,00</h3>
+                        <div class="linha-colorida-vermelho"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3>FALTAM PAGAR</h3>
+                        <h3 id="atrasadas">5</h3>
+                        <div class="linha-colorida-amarelo"></div>
+                    </div>
+                </div>
+
+                <div class="container-geral">
+
+                    <div class="container-input">
+                        <label for="filtrar">Filtrar</label>
+                        <input type="text" class="input-filtrar">
+                        <input type="submit" value="FILTRAR" id="botao-filtrar" class="botao-grande botao-primario">
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data de vencimento <div class="separador-tabela"></div>
+                                </th>
+                                <th>Despesa <div class="separador-tabela"></div>
+                                </th>
+                                <th>Valor <div class="separador-tabela"></div>
+                                </th>
+                                <th>Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>23/03/2023</td>
+                                <td>Compra de lanche</td>
+                                <td>R$ 50,00</td>
+                                <td><button class="botao-pago botao-pequeno">PAGO</button></td>
+                            </tr>
+                            <tr>
+                                <td>23/03/2023</td>
+                                <td>Compra de lanche</td>
+                                <td>R$ 100,00</td>
+                                <td><button class="botao-pendente botao-pequeno">PENDENTE</button></td>
+                            </tr>
+                            <tr>
+                                <td>23/03/2023</td>
+                                <td>Compra de lanche</td>
+                                <td>R$ 50,00</td>
+                                <td><button class="botao-pago botao-pequeno">PAGO</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="container-botao-fim-tabela">
+                        <input type="submit" value="ADICIONAR DESPESA" id="botao-adicionar-despesa"
+                            class="botao-grande botao-primario">
+                    </div>
+                </div>
+            </section>
+
+            <section class="modal modal-adicionar-categoria">
                 <div class="card">
-                    <h3>TOTAL PAGO</h3>
-                    <h3 id="total-pago">R$ 100,00</h3>
-                    <div class="linha-colorida-verde"></div>
+                    <h1>ADICIONAR DESPESA</h1>
+                    <form>
+                        <div class="container-input">
+                            <label for="filtrar">Categoria</label>
+                            <input type="text" class="input-filtrar" placeholder="Busque a categoria">
+                        </div>
+
+                        <label for="filtrar">Categoria</label>
+                            <input type="text" class="input-filtrar" placeholder="Busque a categoria">
+                    </form>
                 </div>
+            </section>
 
-                <div class="card">
-                    <h3>TOTAL A PAGAR</h3>
-                    <h3 id="total-divida">R$ 200,00</h3>
-                    <div class="linha-colorida-vermelho"></div>
+            <section id="cadastro-categorias" hidden>
+                <div class="container-geral">
+                    <h1>CADASTRO DE CATEGORIAS</h1>
+                    <div class="container-input">
+                        <label for="filtrar">Filtrar</label>
+                        <input type="text" class="input-filtrar">
+                        <input type="submit" value="FILTRAR" id="botao-filtrar" class="botao-grande botao-primario">
+                    </div>
+
+                    <table>
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>ID<div class="separador-tabela"></div>
+                                </th>
+                                <th>Categoria<div class="separador-tabela"></div>
+                                </th>
+                                <th>Ações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>202301</td>
+                                <td>Gerais</td>
+                                <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
+                                    <button class="botao-pequeno botao-excluir">EXCLUIR</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>202302</td>
+                                <td>Gerais</td>
+                                <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
+                                    <button class="botao-pequeno botao-excluir">EXCLUIR</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>202303</td>
+                                <td>Gerais</td>
+                                <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
+                                    <button class="botao-pequeno botao-excluir">EXCLUIR</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="container-botao-fim-tabela">
+                        <input type="submit" value="ADICIONAR CATEGORIA" id="botao-adicionar-categoria"
+                            class="botao-grande botao-primario">
+                    </div>
                 </div>
+            </section>
 
-                <div class="card">
-                    <h3>FALTAM PAGAR</h3>
-                    <h3 id="atrasadas">5</h3>
-                    <div class="linha-colorida-amarelo"></div>
-                </div>
-            </div>
+            <section class="modal modal-adicionar-despesa">
 
-            <div class="container-despesas">
-
-                <div class="container-input-despesas">
-                    <label for="filtrar">Filtrar</label>
-                    <input type="text" id="input-filtrar" placeholder="TESTE">
-                    <input type="submit" value="Filtrar" id="botao-filtrar" class="botao-grande botao-primario">
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Data de vencimento</th>
-                            <th>Despesa</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>23/03/2023</td>
-                            <td>Compra de lanche</td>
-                            <td>R% 50,00</td>
-                            <td>PAGO</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            </section>
 
         </main>
 

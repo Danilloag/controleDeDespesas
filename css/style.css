@@ -14,9 +14,10 @@ header {
     align-items: center;
     justify-content: end;
     padding: 0 80px;
+    z-index: 2;
 }
 
-#separador-header {
+#separador {
     height: 20px;
     width: 1px;
     background-color: #ffffff;
@@ -30,9 +31,14 @@ main {
     padding: 160px;
 }
 
-/* CONFIGURANDO OS BOTÕES */
+h1 {
+    text-align: center;
+    color: var(--cor-primaria);
+    font-size: 2em;
+    line-height: 44px;
+}
 
-.botao:hover {}
+/* CONFIGURANDO OS BOTÕES */
 
 .botao-grande {
     height: 42px;
@@ -43,6 +49,30 @@ main {
 
 .botao-primario {
     background-color: var(--cor-primaria);
+    color: #ffffff;
+}
+
+.botao-pequeno {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 13px;
+}
+
+.botao-pago {
+    background-color: var(--cor-sucesso);
+    color: #ffffff;
+}
+
+.botao-pendente {
+    background-color: var(--cor-divida);
+    color: #ffffff;
+}
+
+.botao-excluir {
+    border: var(--cor-divida) 1px solid;
+    color: var(--cor-divida);
+    background-color: #ffffff;
 }
 
 /* TRABALHANDO COM OS CARDS */
@@ -112,14 +142,13 @@ main {
 
 /* TRABALHANDO COM A TELA DE LISTAGEM DAS DESPESAS */
 
-.container-despesas {
+.container-geral {
     margin: 100px 80px;
-    width: 100%;
     display: grid;
     gap: 32px;
 }
 
-.container-input-despesas {
+.container-input {
     position: relative;
     display: flex;
     gap: 8px;
@@ -133,20 +162,62 @@ label {
     font-size: 12px;
 }
 
-#input-filtrar {
+.input-filtrar {
     padding-top: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.42);
     width: 80%;
 }
 
+.container-botao-fim-tabela {
+    justify-self: end;
+}
+
 /* FORMATANDO AS TABELAS */
 
 thead {
-    height: 56px;
-    background-color:#F3F6F9;
+    background-color: #F3F6F9;
     align-items: left;
 }
 
 table {
     text-align: left;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+col {
+    width: 1fr;
+}
+
+th,
+td {
+    padding: 10px;
+}
+
+.coluna-botao {
+    display: flex;
+    gap: 10px;
+}
+
+th {
+    position: relative;
+}
+
+.separador-tabela {
+    height: 20px;
+    width: 2px;
+    background-color: #E0E0E0;
+    position: absolute;
+    right: 0;
+    top: 18px;
+}
+
+tr {
+    height: 56px;
+    border-bottom: 2px #E0E0E0 solid;
+}
+
+tr:nth-child(even) {
+    background-color: #2196f30a;
 }
