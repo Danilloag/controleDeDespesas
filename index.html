@@ -20,21 +20,21 @@
 
         <main>
 
-            <section id="home" hidden>
+            <section id="home">
                 <div class="container-cards">
-                    <div class="card">
+                    <div class="card card-home">
                         <h3>TOTAL PAGO</h3>
                         <h3 id="total-pago">R$ 100,00</h3>
                         <div class="linha-colorida-verde"></div>
                     </div>
 
-                    <div class="card">
+                    <div class="card card-home">
                         <h3>TOTAL A PAGAR</h3>
                         <h3 id="total-divida">R$ 200,00</h3>
                         <div class="linha-colorida-vermelho"></div>
                     </div>
 
-                    <div class="card">
+                    <div class="card card-home">
                         <h3>FALTAM PAGAR</h3>
                         <h3 id="atrasadas">5</h3>
                         <div class="linha-colorida-amarelo"></div>
@@ -43,10 +43,11 @@
 
                 <div class="container-geral">
 
-                    <div class="container-input">
+                    <div class="container-input container-input-filtrar">
                         <label for="filtrar">Filtrar</label>
-                        <input type="text" class="input-filtrar">
-                        <input type="submit" value="FILTRAR" id="botao-filtrar" class="botao-grande botao-primario">
+                        <input type="text" class="input">
+                        <input type="submit" name="filtrar" value="FILTRAR" id="botao-filtrar"
+                            class="botao-grande botao-primario">
                     </div>
 
                     <table>
@@ -92,16 +93,39 @@
             </section>
 
             <section class="modal modal-adicionar-categoria">
-                <div class="card">
+                <div class="card card-modal">
                     <h1>ADICIONAR DESPESA</h1>
-                    <form>
-                        <div class="container-input">
+                    <form class="form">
+
+                        <div class="container-input container-input-modal">
                             <label for="filtrar">Categoria</label>
-                            <input type="text" class="input-filtrar" placeholder="Busque a categoria">
+                            <input type="text" class="input" placeholder="Busque a categoria">
                         </div>
 
-                        <label for="filtrar">Categoria</label>
-                            <input type="text" class="input-filtrar" placeholder="Busque a categoria">
+                        <div class="container-input container-input-modal">
+                            <label for="data-do-vencimento">Data do vencimento</label>
+                            <input type="date" class="input">
+                        </div>
+
+                        <div class="container-input container-input-modal">
+                            <label for="despesas">Despesa</label>
+                            <input type="text" class="input" placeholder="Qual a despesa?">
+                        </div>
+
+                        <div class="container-input container-input-modal">
+                            <label for="valor">Valor</label>
+                            <input type="number" class="input" placeholder="R$ 00,00">
+                        </div>
+
+                        <div class="container-botao-modal">
+                            <div class="container-input container-input-modal">
+                                <input type="submit" class="botao-grande botao-primario" value="SALVAR">
+                            </div>
+
+                            <div class="container-input container-input-modal">
+                                <input type="submit" class="botao-grande botao-excluir" value="CANCELAR">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </section>
@@ -162,8 +186,27 @@
                 </div>
             </section>
 
-            <section class="modal modal-adicionar-despesa">
+            <section class="modal modal-adicionar-categoria">
+                <div class="card card-modal">
+                    <h1>ADICIONAR/EDITAR CATEGORIA</h1>
 
+                    <form class="form">
+
+                        <div class="container-input container-input-modal">
+                            <label for="categoria">Categoria</label>
+                            <input type="text" class="input" placeholder="Qual categoria você deseja adicionar/editar?">
+                        </div>
+                        <div class="container-botao-modal">
+                            <div class="container-input container-input-modal">
+                                <input type="submit" class="botao-grande botao-primario" value="SALVAR">
+                            </div>
+
+                            <div class="container-input container-input-modal">
+                                <input type="submit" class="botao-grande botao-excluir" value="CANCELAR">
+                            </div>
+                        </div>
+                        </form>
+                </div>
             </section>
 
         </main>

@@ -84,7 +84,6 @@ h1 {
 }
 
 .card {
-    height: 125px;
     border-radius: 4px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: relative;
@@ -93,6 +92,16 @@ h1 {
     gap: 10px;
     align-items: center;
     justify-content: center;
+    padding: 12px;
+}
+
+.card-home {
+    height: 125px;
+}
+
+.card-modal {
+    width: 50vw;
+    padding: 50px;
 }
 
 .linha-colorida-verde,
@@ -152,6 +161,9 @@ h1 {
     position: relative;
     display: flex;
     gap: 8px;
+}
+
+.container-input-filtrar {
     width: 50%;
 }
 
@@ -162,10 +174,10 @@ label {
     font-size: 12px;
 }
 
-.input-filtrar {
+.input {
     padding-top: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.42);
-    width: 80%;
+    width: 100%;
 }
 
 .container-botao-fim-tabela {
@@ -220,4 +232,35 @@ tr {
 
 tr:nth-child(even) {
     background-color: #2196f30a;
+}
+
+/* MODAIS */
+
+.modal {
+    display: flex;
+    justify-content: center;
+}
+
+.container-botao-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FORMULÁRIO DE DESPESAS */
+
+.form {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 32px;
+}
+
+.container-input-modal {
+    width: 50%;
+}
+
+.form-adicionar-despesa > div:first-child {
+    margin-top: 32px;
+   margin-bottom: 18px;
 }
