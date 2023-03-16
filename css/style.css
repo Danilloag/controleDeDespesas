@@ -102,6 +102,8 @@ h1 {
 .card-modal {
     width: 50vw;
     padding: 50px;
+    background-color: #ffffff;
+    border-radius: 12px;
 }
 
 .linha-colorida-verde,
@@ -236,15 +238,41 @@ tr:nth-child(even) {
 
 /* MODAIS */
 
-.modal {
-    display: flex;
-    justify-content: center;
-}
-
 .container-botao-modal {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#fundo-modal-despesa, #fundo-modal-categoria {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+#fundo-modal-despesa.oculto, #modal-adicionar-despesa.oculto, #fundo-modal-categoria.oculto, #modal-adicionar-categoria.oculto {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#fundo-modal-despesa, #modal-adicionar-despesa, #fundo-modal-categoria, #modal-adicionar-categoria {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
 }
 
 /* FORMULÁRIO DE DESPESAS */
@@ -260,7 +288,22 @@ tr:nth-child(even) {
     width: 50%;
 }
 
-.form-adicionar-despesa > div:first-child {
+.form-adicionar-despesa>div:first-child {
     margin-top: 32px;
-   margin-bottom: 18px;
+    margin-bottom: 18px;
+}
+
+/* FEEDBACK PARA O USUARIO */
+
+#msgUsuario {
+    z-index: 100;
+    background-color: rgb(255, 255, 255);
+    width: 35vw;
+    height: 150px;
+    border-radius: 4px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
 }
