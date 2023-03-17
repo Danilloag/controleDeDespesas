@@ -14,6 +14,8 @@ let msgUsuario = document.querySelector('#msgUsuario')
 
 let inputNovaCategoria = document.querySelector('#inputNovaCategoria');
 
+let listaCategorias = document.querySelector('#lista-categorias')
+
 function toggleModal(fundo, modal) {
     fundo.classList.toggle('oculto');
     modal.classList.toggle('oculto');
@@ -35,14 +37,61 @@ function toggleModal(fundo, modal) {
 
 let categorias = []
 
-// function adicionarCategoria(categoria) {
-//     categorias.push(categoria);
-//     console.log(categorias);
-// }
+// btnAdicionarCategoria.addEventListener("click",() => {
+//     categorias.push(inputNovaCategoria.value);
+//     inputNovaCategoria.value = '';
+//     msgUsuario.style.display = 'block'
+// })
 
-btnAdicionarCategoria.addEventListener("click",() => {
-    categorias.push(inputNovaCategoria.value);
-    inputNovaCategoria.value = '';
-    msgUsuario.style.display = 'block'
-    console.log(categorias)
-})
+btnAdicionarCategoria.onclick = function () {
+    if (inputNovaCategoria.value.trim()) {
+        let categoria = {
+            nome: inputNovaCategoria.value,
+            id: gerarIdUnico()
+        }
+        armazenaCategoria(categoria);
+    }
+}
+
+function armazenaCategoria(categoria) {
+    categorias.push(categoria);
+    atualizarTabelaCategorias(categoria.id, categoria.nome);
+}
+
+function atualizarTabelaCategorias(id, nome) {
+    listaCategorias.innerHTML += `
+    <tr>
+        <td>${id}</td>
+        <td>${nome}</td>
+        <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
+            <button class="botao-pequeno botao-excluir">EXCLUIR</button>
+        </td>
+    </tr>
+    `
+}
+
+function gerarIdUnico() {
+    let date = new Date();
+    let components = [
+        date.getYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes(),
+        date.getSeconds(),
+        date.getMilliseconds()
+    ];
+    return components.join("").slice(-6);
+}
+
+
+//RETOMAR DESTE PONTO
+function verificaCategoriasRepetidas(categoriaRecebida) {
+    categorias.forEach(categoria => {
+        if (categoria !== categoriaRecebida) {
+            console.log("A categoria é diferente")
+        } else {
+            console.log('A categoria é igual')
+        }
+    })
+}
