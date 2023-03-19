@@ -40,14 +40,28 @@ h1 {
 
 /* CONFIGURANDO OS BOTÕES */
 
+button, input[type="button"] {
+    cursor: pointer;
+}
+
+button:hover, input[type="button"]:hover {
+    opacity: 80%;
+}
+
+button:active, input[type="button"]:active {
+    opacity: 70%;
+}
+
 .botao-grande {
     height: 42px;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     padding: 8px 22px;
+    white-space: nowrap;
 }
 
 .botao-primario {
+    border: var(--cor-primaria) 1px solid;
     background-color: var(--cor-primaria);
     color: #ffffff;
 }
@@ -244,7 +258,7 @@ tr:nth-child(even) {
     justify-content: center;
 }
 
-#fundo-modal-despesa, #fundo-modal-categoria {
+#fundo-modal-despesa, #fundo-modal-categoria, #fundo-confirmar-exclusao-categoria, #fundo-modal-editar-categoria {
     position: fixed;
     top: 0;
     left: 0;
@@ -264,12 +278,12 @@ tr:nth-child(even) {
     z-index: 10;
 }
 
-#fundo-modal-despesa.oculto, #modal-adicionar-despesa.oculto, #fundo-modal-categoria.oculto, #modal-adicionar-categoria.oculto {
+#fundo-modal-despesa.oculto, #modal-adicionar-despesa.oculto, #fundo-modal-categoria.oculto, #modal-adicionar-categoria.oculto, #fundo-confirmar-exclusao-categoria.oculto, #modal-confirmar-exclusao-categoria.oculto, #modal-editar-categoria.oculto, #fundo-modal-editar-categoria.oculto {
     opacity: 0;
     pointer-events: none;
 }
 
-#fundo-modal-despesa, #modal-adicionar-despesa, #fundo-modal-categoria, #modal-adicionar-categoria {
+#fundo-modal-despesa, #modal-adicionar-despesa, #fundo-modal-categoria, #modal-adicionar-categoria, #fundo-confirmar-exclusao-categoria, #modal-confirmar-exclusao-categoriam, #modal-editar-categoria, #fundo-modal-editar-categoria {
     transition: 0.5s;
     opacity: 1;
     pointer-events: all;
@@ -296,14 +310,41 @@ tr:nth-child(even) {
 /* FEEDBACK PARA O USUARIO */
 
 #msgUsuario {
+    padding: 10px;
     z-index: 100;
-    background-color: rgb(255, 255, 255);
-    width: 35vw;
-    height: 150px;
+    width: 40vw;
+    height: 100px;
     border-radius: 4px;
     position: fixed;
-    top: 10px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* display: flex; */
     display: none;
-}
+  }
+
+  .msgSucesso {
+    background-color: #f0fcf0;
+    border: 1px solid var(--cor-sucesso);
+    color: var(--cor-sucesso);
+  }
+
+  .msgErro {
+    background-color: #fcf0f0;
+    border: 1px solid var(--cor-divida);
+    color: var(--cor-divida);
+  }
+
+  #msgUsuario p {
+    margin-top: auto;
+  }
+  
+  #msgUsuario button {
+    margin-top: 10px;
+    margin-right: 10px;
+    align-self: flex-end;
+  }

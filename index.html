@@ -44,10 +44,12 @@
                 <div class="container-geral">
 
                     <div class="container-input container-input-filtrar">
-                        <label for="filtrar">Filtrar</label>
+                        <label for="filtrar">Filtrar Despesa</label>
                         <input type="text" class="input">
-                        <input type="button" name="filtrar" value="FILTRAR" id="botao-filtrar"
+                        <input type="button" name="filtrar" value="FILTRAR" id="botao-filtrar-despesa"
                             class="botao-grande botao-primario">
+                        <input type="button" value="REMOVER FILTRO" id="botao-remover-filtro-despesa"
+                            class="botao-grande botao-excluir">
                     </div>
 
                     <table>
@@ -95,10 +97,14 @@
             <section id="cadastro-categorias">
                 <div class="container-geral">
                     <h1>CADASTRO DE CATEGORIAS</h1>
-                    <div class="container-input">
-                        <label for="filtrar">Filtrar</label>
-                        <input type="text" class="input-filtrar">
-                        <input type="button" value="FILTRAR" id="botao-filtrar" class="botao-grande botao-primario">
+
+                    <div class="container-input container-input-filtrar">
+                        <label for="filtrar">Filtrar Categoria</label>
+                        <input type="text" class="input" id="input-filtro-categoria">
+                        <input type="button" value="FILTRAR" id="botao-filtrar-categoria"
+                            class="botao-grande botao-primario">
+                        <input type="button" value="REMOVER FILTRO" id="botao-remover-filtro-categoria"
+                            class="botao-grande botao-excluir">
                     </div>
 
                     <table>
@@ -149,10 +155,8 @@
             </section>
         </main>
 
-        <!-- <div id="msgUsuario">
-            <h3><strong>Parabéns!</strong> Categoria adicionada com sucesso!</h3>
-            <img src="/assets/check.svg">
-        </div> -->
+        <div id="msgUsuario" class="msgErro">
+        </div>
 
         <div id="fundo-modal-despesa" class="oculto">
             <section class="modal oculto" id="modal-adicionar-despesa">
@@ -198,14 +202,14 @@
         <div id="fundo-modal-categoria" class="oculto">
             <section class="modal oculto" id="modal-adicionar-categoria">
                 <div class="card card-modal">
-                    <h1>ADICIONAR/EDITAR CATEGORIA</h1>
+                    <h1>ADICIONAR CATEGORIA</h1>
 
                     <form class="form">
 
                         <div class="container-input container-input-modal">
                             <label for="categoria">Categoria</label>
                             <input type="text" class="input" id="inputNovaCategoria"
-                                placeholder="Qual categoria você deseja adicionar/editar?">
+                                placeholder="Qual categoria você deseja adicionar?">
                         </div>
                         <div class="container-botao-modal">
                             <div class="container-input container-input-modal">
@@ -219,6 +223,47 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </section>
+        </div>
+
+        <div id="fundo-modal-editar-categoria" class="oculto">
+            <section class="modal oculto" id="modal-editar-categoria">
+                <div class="card card-modal">
+                    <h1>EDITAR CATEGORIA</h1>
+                    <form class="form">
+
+                        <div class="container-input container-input-modal">
+                            <label for="categoria">Categoria</label>
+                            <input type="text" class="input" id="input-editar-categoria">
+                        </div>
+                        <div class="container-botao-modal">
+                            <div class="container-input container-input-modal">
+                                <input type="button" class="botao-grande botao-primario" value="SALVAR"
+                                    id="botao-editar-categoria">
+                            </div>
+                            <div class="container-input container-input-modal">
+                                <input type="button" class="botao-grande botao-excluir" value="CANCELAR" id="botao-fechar-modal-editar-categoria">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <div id="fundo-confirmar-exclusao-categoria" class="oculto">
+            <section class="modal oculto" id="modal-confirmar-exclusao-categoria">
+                <div class="card card-modal">
+                    <h3 id="texto-confirmar-exclusao-categoria">Você deseja excluir a categoria</h3>
+                    <div class="container-botao-modal">
+                        <div class="container-input container-input-modal">
+                            <input type="button" class="botao-grande botao-excluir" value="EXCLUIR"
+                                id="botao-confirmar-excluir-categoria">
+                        </div>
+                        <div class="container-input container-input-modal">
+                            <input type="button" class="botao-grande botao-primario" value="NÃO EXCLUIR"
+                                id="botao-não-excluir-categoria">
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
