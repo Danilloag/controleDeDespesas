@@ -13,9 +13,9 @@
     <div>
 
         <header>
-            <span class="link-header">Despesas</span>
+            <button class="link-header" onclick="mostrarHome()">Despesas</button>
             <div id="separador"></div>
-            <span class="link-header">Categorias</span>
+            <button class="link-header" onclick="mostrarCategorias()">Categorias</button>
         </header>
 
         <main>
@@ -24,19 +24,19 @@
                 <div class="container-cards">
                     <div class="card card-home">
                         <h3>TOTAL PAGO</h3>
-                        <h3 id="total-pago">R$ 100,00</h3>
+                        <h3 id="total-pago">R$ 0,00</h3>
                         <div class="linha-colorida-verde"></div>
                     </div>
 
                     <div class="card card-home">
                         <h3>TOTAL A PAGAR</h3>
-                        <h3 id="total-divida">R$ 200,00</h3>
+                        <h3 id="total-divida">R$ 0,00</h3>
                         <div class="linha-colorida-vermelho"></div>
                     </div>
 
                     <div class="card card-home">
                         <h3>FALTAM PAGAR</h3>
-                        <h3 id="atrasadas">5</h3>
+                        <h3 id="falta-pagar">0</h3>
                         <div class="linha-colorida-amarelo"></div>
                     </div>
                 </div>
@@ -45,9 +45,9 @@
 
                     <div class="container-input container-input-filtrar">
                         <label for="filtrar">Filtrar Despesa</label>
-                        <input type="text" class="input">
-                        <input type="button" name="filtrar" value="FILTRAR" id="botao-filtrar-despesa"
-                            class="botao-grande botao-primario">
+                        <input type="text" class="input" id="input-filtro-despesas">
+                        <!-- <input type="button" name="filtrar" value="FILTRAR" id="botao-filtrar-despesa"
+                            class="botao-grande botao-primario"> -->
                         <input type="button" value="REMOVER FILTRO" id="botao-remover-filtro-despesa"
                             class="botao-grande botao-excluir">
                     </div>
@@ -65,25 +65,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>23/03/2023</td>
-                                <td>Compra de lanche</td>
-                                <td>R$ 50,00</td>
-                                <td><button class="botao-pago botao-pequeno">PAGO</button></td>
-                            </tr>
-                            <tr>
-                                <td>23/03/2023</td>
-                                <td>Compra de lanche</td>
-                                <td>R$ 100,00</td>
-                                <td><button class="botao-pendente botao-pequeno">PENDENTE</button></td>
-                            </tr>
-                            <tr>
-                                <td>23/03/2023</td>
-                                <td>Compra de lanche</td>
-                                <td>R$ 50,00</td>
-                                <td><button class="botao-pago botao-pequeno">PAGO</button></td>
-                            </tr>
+                        <tbody id="lista-despesas">
                         </tbody>
                     </table>
 
@@ -94,15 +76,15 @@
                 </div>
             </section>
 
-            <section id="cadastro-categorias">
+            <section id="cadastro-categorias" hidden>
                 <div class="container-geral">
                     <h1>CADASTRO DE CATEGORIAS</h1>
 
                     <div class="container-input container-input-filtrar">
                         <label for="filtrar">Filtrar Categoria</label>
                         <input type="text" class="input" id="input-filtro-categoria">
-                        <input type="button" value="FILTRAR" id="botao-filtrar-categoria"
-                            class="botao-grande botao-primario">
+                        <!-- <input type="button" value="FILTRAR" id="botao-filtrar-categoria"
+                            class="botao-grande botao-primario"> -->
                         <input type="button" value="REMOVER FILTRO" id="botao-remover-filtro-categoria"
                             class="botao-grande botao-excluir">
                     </div>
@@ -124,27 +106,6 @@
                             </tr>
                         </thead>
                         <tbody id="lista-categorias">
-                            <!-- <tr>
-                                <td>202301</td>
-                                <td>Gerais</td>
-                                <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
-                                    <button class="botao-pequeno botao-excluir">EXCLUIR</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>202302</td>
-                                <td>Gerais</td>
-                                <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
-                                    <button class="botao-pequeno botao-excluir">EXCLUIR</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>202303</td>
-                                <td>Gerais</td>
-                                <td class="coluna-botao"><button class="botao-primario botao-pequeno">EDITAR</button>
-                                    <button class="botao-pequeno botao-excluir">EXCLUIR</button>
-                                </td>
-                            </tr> -->
                         </tbody>
                     </table>
                     <div class="container-botao-fim-tabela">
@@ -166,27 +127,28 @@
 
                         <div class="container-input container-input-modal">
                             <label for="filtrar">Categoria</label>
-                            <input type="text" class="input" placeholder="Busque a categoria">
+                            <select name="lista-suspesa-categorias" id="lista-suspesa-categorias" class="input">
+                            </select>
                         </div>
 
                         <div class="container-input container-input-modal">
                             <label for="data-do-vencimento">Data do vencimento</label>
-                            <input type="date" class="input">
+                            <input type="date" class="input" id="data-do-vencimento">
                         </div>
 
                         <div class="container-input container-input-modal">
                             <label for="despesas">Despesa</label>
-                            <input type="text" class="input" placeholder="Qual a despesa?">
+                            <input type="text" class="input" placeholder="Qual a despesa?" id="nome-da-despesa">
                         </div>
 
                         <div class="container-input container-input-modal">
                             <label for="valor">Valor</label>
-                            <input type="number" class="input" placeholder="R$ 00,00">
+                            <input type="number" class="input" placeholder="R$ 00,00" id="valor-da-despesa">
                         </div>
 
                         <div class="container-botao-modal">
                             <div class="container-input container-input-modal">
-                                <input type="button" class="botao-grande botao-primario" value="SALVAR">
+                                <input type="button" class="botao-grande botao-primario" value="SALVAR" id="botao-adicionar-despesa">
                             </div>
 
                             <div class="container-input container-input-modal">

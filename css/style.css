@@ -24,6 +24,7 @@ header {
 }
 
 .link-header {
+    background-color: #ffffff00;
     color: #ffffff;
 }
 
@@ -149,7 +150,7 @@ button:active, input[type="button"]:active {
     color: var(--cor-divida);
 }
 
-#atrasadas {
+#falta-pagar {
     color: var(--cor-atencao);
 }
 
@@ -161,11 +162,19 @@ button:active, input[type="button"]:active {
 
 #total-pago,
 #total-divida,
-#atrasadas {
+#falta-pagar {
     font-size: 32px;
 }
 
 /* TRABALHANDO COM A TELA DE LISTAGEM DAS DESPESAS */
+
+.despesa-paga {
+    color: var(--cor-sucesso);
+}
+
+.despesa-pendente {
+    color: var(--cor-divida);
+}
 
 .container-geral {
     margin: 100px 80px;
