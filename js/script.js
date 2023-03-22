@@ -8,6 +8,8 @@ let btnRemoverFiltroDespesa = document.querySelector('#botao-remover-filtro-desp
 let btnFecharModalEditarCategoria = document.querySelector('#botao-fechar-modal-editar-categoria');
 let btnEditarCategoria = document.querySelector('#botao-editar-categoria');
 let btnAdicionarDespesa = document.querySelector('#botao-adicionar-despesa');
+let btnConfirmaExclusao = document.querySelector('#botao-confirmar-excluir-categoria');
+let btnCancelaExclusao = document.querySelector('#botao-nao-excluir-categoria');
 
 let modalAdicionarDespesa = document.querySelector('#modal-adicionar-despesa');
 let fundoModalAdicionarDespesa = document.querySelector('#fundo-modal-despesa');
@@ -15,6 +17,8 @@ let modalAdicionarCategoria = document.querySelector('#modal-adicionar-categoria
 let fundoModalAdicionarCategoria = document.querySelector('#fundo-modal-categoria');
 let fundoModalEditarCategoria = document.querySelector('#fundo-modal-editar-categoria');
 let modalEditarCategoria = document.querySelector('#modal-editar-categoria');
+let fundoModalConfirmaExclusao = document.querySelector('#fundo-confirmar-exclusao-categoria');
+let modalConfirmaExclusao = document.querySelector('#modal-confirmar-exclusao-categoria');
 let telaCadastroCategorias = document.querySelector('#cadastro-categorias');
 let home = document.querySelector('#home');
 
@@ -40,11 +44,13 @@ let listaDespesas = document.querySelector('#lista-despesas');
 function mostrarHome() {
     home.removeAttribute("hidden")
     telaCadastroCategorias.setAttribute("hidden", "")
+    atualizarTabelaDespesas(despesas);
 }
 
 function mostrarCategorias() {
     telaCadastroCategorias.removeAttribute("hidden")
     home.setAttribute("hidden", "")
+    atualizarTabelaCategorias(categorias);
 }
 
 function toggleModal(fundo, modal) {
@@ -61,18 +67,27 @@ function toggleModal(fundo, modal) {
     el.addEventListener("click", () => toggleModal(fundoModalAdicionarCategoria, modalAdicionarCategoria));
 });
 
+[btnCancelaExclusao, btnConfirmaExclusao, fundoModalConfirmaExclusao].forEach((el) => {
+    el.addEventListener("click", () => toggleModal(fundoModalConfirmaExclusao, modalConfirmaExclusao));
+});
+
 [btnFecharModalEditarCategoria, fundoModalEditarCategoria].forEach((el) => {
     el.addEventListener("click", () => toggleModal(fundoModalEditarCategoria, modalEditarCategoria));
 });
 
-[modalAdicionarCategoria, modalAdicionarDespesa, modalEditarCategoria].forEach((el) => {
+[modalAdicionarCategoria, modalAdicionarDespesa, modalEditarCategoria, modalConfirmaExclusao].forEach((el) => {
     el.addEventListener("click", function (event) {
         event.stopPropagation();
     });
 })
 
-let categorias = []
-let despesas = []
+let categoriasLocalStorage = JSON.parse(localStorage.getItem("categorias"));
+let despesasLocalStorage = JSON.parse(localStorage.getItem("despesas"));
+
+let categorias = categoriasLocalStorage ?? []
+let despesas = despesasLocalStorage ?? []
+
+atualizarTabelaDespesas(despesas);
 
 //Atualizando o valor dos cards
 function atualizaDivida() {
@@ -91,12 +106,14 @@ function atualizaDivida() {
         return despesa.pago ? contador + despesa.valor : contador;
     }, 0);
 
-    console.log(despesasNaoPagas)
-    console.log(despesasPagas)
-
     quantidadeAPagar.innerHTML = `${quantidadeDespesasPendentes}`;
-    totalValorPago.innerHTML = `R$ ${despesasPagas}`;
-    totalValorPendente.innerHTML = `R$ ${despesasNaoPagas}`;
+    totalValorPago.innerHTML = `${formataNumeroParaReal(despesasPagas)}`;
+    totalValorPendente.innerHTML = `${formataNumeroParaReal(despesasNaoPagas)}`;
+}
+
+//Convertendo número em R$
+function formataNumeroParaReal(valor) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits:2 }).format(valor);
 }
 
 //Função para validar campos vazios
@@ -134,7 +151,6 @@ btnAdicionarDespesa.onclick = function () {
             valor: Number(inputValorDaDespesa.value),
             pago: false,
         }
-        console.log(despesa);
         armazenaDespesa(despesa);
         inputNomeDaDespesa.value = '';
         inputDataDoVencmiento.value = '';
@@ -151,6 +167,15 @@ function addOpcaoCategorias() {
         listaSupensaCategorias.innerHTML += `
     <option value="${categoria.nome}">${categoria.nome}</option>
     `}
+}
+
+//Atualizando localStorage
+function atualizarLocalStorageCategorias() {
+    localStorage.setItem("categorias",JSON.stringify(categorias));
+}
+
+function atualizarLocalStorageDespesas() {
+    localStorage.setItem("despesas",JSON.stringify(despesas));
 }
 
 //Função para inserir uma nova categoria no array
@@ -173,10 +198,11 @@ function atualizarTabelaDespesas(arrayDespesas) {
         <tr class="despesa-pendente">
             <td>${despesa.vencimento}</td>
             <td>${despesa.nome}</td>
-            <td>R$${despesa.valor.toFixed(2)}</td>
+            <td>${formataNumeroParaReal(despesa.valor)}</td>
             <td><button class="botao-pendente botao-pequeno" onclick="alteraStatusDespesa(this, ${indice})">PENDENTE</button></td>
         </tr>
         `})
+        atualizarLocalStorageDespesas();
 }
 
 //Função que atualiza a tabela de categorias que é exibida para o usuário
@@ -188,12 +214,13 @@ function atualizarTabelaCategorias(arrayCategorias) {
         <td>${categoria.id}</td>
         <td>${categoria.nome}</td>
         <td class="coluna-botao">
-            <button class="botao-primario botao-pequeno" onclick="editarCategoria(${categoria.id})">EDITAR</button>
-            <button class="botao-pequeno botao-excluir" onclick="removerCategoria(${categoria.id})">EXCLUIR</button>
+            <button class="botao-primario botao-pequeno" onclick="editarCategoria('${categoria.id}')">EDITAR</button>
+            <button class="botao-pequeno botao-excluir" onclick="removerCategoria('${categoria.id}')">EXCLUIR</button>
         </td>
     </tr>
     `)
     addOpcaoCategorias();
+    atualizarLocalStorageCategorias();
 }
 
 //Função para alternar o status da despesa entre pago e pendente
@@ -233,8 +260,7 @@ function gerarIdUnico() {
     return components.join("").slice(-6);
 }
 
-//REFAZER ESTA FUNÇÃO
-
+//VERIFICA CATEGORIA REPETIDA
 function verificaCategoriasRepetidas(nomeCategoria) {
     for (let categoria of categorias) {
         if (categoria.nome === nomeCategoria) {
@@ -280,13 +306,15 @@ btnRemoverFiltroCategoria.onclick = function () {
 
 //Remover uma categoria cadastrada
 function removerCategoria(idCategoria) {
+    toggleModal(fundoModalConfirmaExclusao, modalConfirmaExclusao);
+    btnConfirmaExclusao.addEventListener("click", function () {
     categorias.filter((categoria, indice) => {
         if (categoria.id == idCategoria) {
             categorias.splice(indice, 1)
         }
     });
     feedbackUsuario(true, "Categoria removida com sucesso!")
-    atualizarTabelaCategorias(categorias);
+    atualizarTabelaCategorias(categorias);})
 }
 
 //Editar uma categoria cadastrada
