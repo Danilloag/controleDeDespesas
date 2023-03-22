@@ -27,6 +27,7 @@ let divMsgUsuario = document.querySelector('#msgUsuario')
 let totalValorPago = document.querySelector('#total-pago')
 let totalValorPendente = document.querySelector('#total-divida')
 let quantidadeAPagar = document.querySelector('#falta-pagar')
+let msgConfirmaExclusao = document.querySelector('#texto-confirmar-exclusao-categoria');
 
 let inputNovaCategoria = document.querySelector('#inputNovaCategoria');
 let inputFiltroCategoria = document.querySelector('#input-filtro-categoria');
